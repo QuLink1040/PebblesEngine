@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\x64\Debug\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\x64\Debug\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Fonts\SourceSansPro\SourceSansPro-Black.ttf" />
+    <None Remove="Resources\Fonts\SourceSansPro\SourceSansPro-BlackItalic.ttf" />
+    <None Remove="Resources\Fonts\SourceSansPro\SourceSansPro-Bold.ttf" />
+    <None Remove="Resources\Fonts\SourceSansPro\SourceSansPro-BoldItalic.ttf" />
+    <None Remove="Resources\Fonts\SourceSansPro\SourceSansPro-ExtraLight.ttf" />
+    <None Remove="Resources\Fonts\SourceSansPro\SourceSansPro-ExtraLightItalic.ttf" />
+    <None Remove="Resources\Fonts\SourceSansPro\SourceSansPro-Italic.ttf" />
+    <None Remove="Resources\Fonts\SourceSansPro\SourceSansPro-Light.ttf" />
+    <None Remove="Resources\Fonts\SourceSansPro\SourceSansPro-LightItalic.ttf" />
+    <None Remove="Resources\Fonts\SourceSansPro\SourceSansPro-Regular.ttf" />
+    <None Remove="Resources\Fonts\SourceSansPro\SourceSansPro-SemiBold.ttf" />
+    <None Remove="Resources\Fonts\SourceSansPro\SourceSansPro-SemiBoldItalic.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-Black.ttf" />
+    <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-BlackItalic.ttf" />
+    <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-Bold.ttf" />
+    <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-BoldItalic.ttf" />
+    <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-ExtraLight.ttf" />
+    <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-ExtraLightItalic.ttf" />
+    <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-Italic.ttf" />
+    <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-Light.ttf" />
+    <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-LightItalic.ttf" />
+    <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-Regular.ttf" />
+    <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-SemiBold.ttf" />
+    <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-SemiBoldItalic.ttf" />
+  </ItemGroup>
+
+</Project>
