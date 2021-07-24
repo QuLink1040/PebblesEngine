@@ -16,25 +16,37 @@
     
     <StackPanel Background="#182a33">
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <ListBox Width="195" Height="250" FontFamily="{StaticResource SourceSansReg}" Background="#0c191c" BorderBrush="#465250" BorderThickness="2"/>
-            <Border Width="400" Height="250" Margin="5, 0, 0, 0"/>
-        </StackPanel>
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
+			<ListBox Width="195" Height="250" FontFamily="{StaticResource SourceSansReg}" Background="#0c191c" BorderBrush="#465250" BorderThickness="2" ItemsSource="{Binding ProjectTemplates}" x:Name="templateListBox" SelectedIndex="0">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="{Binding ProjectType}" FontFamily="{StaticResource SourceSansReg}" FontSize="20" TextWrapping="Wrap" Foreground="#b8b8b8"/>
+						</StackPanel>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+			<Border Width="400" Height="250" Margin="5, 0, 0, 0">
+				<Border.Background>
+					<ImageBrush ImageSource="{Binding Path=SelectedItem.Screenshot, ElementName=templateListBox}"/>
+				</Border.Background>
+			</Border>
+		</StackPanel>
         
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20, 0, 0">
             <TextBlock Text="Name" Width="50" Foreground="#b8b8b8" FontFamily="{StaticResource SourceSansReg}"/>
-            <TextBox Width="550" Height="18" Text="{Binding Name}"/>
+            <TextBox Width="550" Height="20" Text="{Binding ProjectName}"/>
         </StackPanel>
         
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 5, 0, 0">
             <TextBlock Text="Path" Width="50" Foreground="#b8b8b8" FontFamily="{StaticResource SourceSansReg}" Height="18"/>
-            <TextBox Width="500" Height="18" Text="{Binding Path}"/>
-            <Button Content="Browse" Width="45" Margin="5,0,0,0" Height="18"/>
+            <TextBox Width="500" Height="20" Text="{Binding ProjectPath}"/>
+            <Button Content="Browse" Width="45" Margin="5,0,0,0" Height="20"/>
         </StackPanel>
         
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
-            <Button Content="Create" Width="90" IsDefault="True" FontFamily="{StaticResource SourceSansReg}"/>
-            <Button Content="Exit" Width="90" Margin="30,0,0,0" IsCancel="True" FontFamily="{StaticResource SourceSansReg}"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+            <Button Content="Create" Width="90" IsDefault="True" FontFamily="{StaticResource SourceSansReg}" Height="20"/>
+			<Button Content="Exit" Width="90" Margin="30,0,0,0" IsCancel="True" FontFamily="{StaticResource SourceSansReg}" Height="20"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

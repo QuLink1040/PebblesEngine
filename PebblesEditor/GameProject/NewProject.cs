@@ -5,6 +5,8 @@ using System.IO;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization;
+using PebblesEditor.Utilities;
+using System.Collections.ObjectModel;
 
 namespace PebblesEditor.GameProject
 {
@@ -19,57 +21,63 @@ namespace PebblesEditor.GameProject
         [DataMember]
         public List<string> Folders { get; set; }
 
+        public byte[] Screenshot { get; set; }
+        public string ScreenshotFilePath { get; set; }
+        public string ProjectFilePath { get; set; }
     }
     
     class NewProject : ViewModelBase
     {
         //TODO: get path from install location
-        private readonly string _templatePath = @"..\..\PebblesEditor\Resources\Project Templates";
+        private readonly string _templatePath = @"..\..\..\PebblesEditor\Resources\Project Templates";
 
-        private string _name = "NewProject";
-        public string Name
+        private string _projectname = "NewProject";
+        public string ProjectName
         {
-            get => _name;
+            get => _projectname;
             set
             {
-               if(_name != value)
+               if(_projectname != value)
                 {
-                    _name = value;
-                    OnPropertyChange(nameof(Name));
+                    _projectname = value;
+                    OnPropertyChange(nameof(ProjectName));
                 }
             }
         }
 
-        private string _path = $@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\PebblesProjects\";
-        public string Path
+        private string _projectpath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\PebblesProjects\";
+        public string ProjectPath
         {
-            get => _path;
+            get => _projectpath;
             set
             {
-                if (_path != value)
+                if (_projectpath != value)
                 {
-                    _name = value;
-                    OnPropertyChange(nameof(Path));
+                    _projectname = value;
+                    OnPropertyChange(nameof(ProjectPath));
                 }
             }
         }
+
+        private ObservableCollection<ProjectTemplate> _projectTemplates = new ObservableCollection<ProjectTemplate>();
+        public ReadOnlyObservableCollection<ProjectTemplate> ProjectTemplates
+        { get;  }
 
         public NewProject()
         {
+            ProjectTemplates = new ReadOnlyObservableCollection<ProjectTemplate>(_projectTemplates);
             try
             {
                 var templateFiles = Directory.GetFiles(_templatePath, "template.xml", SearchOption.AllDirectories);
                 Debug.Assert(templateFiles.Any());
                 foreach (var file in templateFiles)
                 {
-                    var template = new ProjectTemplate()
-                    {
-                        ProjectType = "Empty Project",
-                        ProjectFile = "project.pebbles", 
-                        Folders = new List<string> () {".Pebbles", "Content", "GameCode" }
-                    };
+                    var template = Serializer.FromFile<ProjectTemplate>(file);
+                    template.ScreenshotFilePath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(file), "screenshot.png"));
+                    template.Screenshot = File.ReadAllBytes(template.ScreenshotFilePath);
+                    template.ProjectFilePath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(file), template.ProjectFile));
 
-
+                    _projectTemplates.Add(template);
                 }
             }
             catch (Exception ex)

@@ -26,7 +26,7 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                                    <Border HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="openProjectBorder" Background="#212121" Padding="10">
+									<Border HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="openProjectBorder" Background="#212121" Padding="10"  Width="400">
                                         <ContentPresenter/>
                                     </Border>
                                     <ControlTemplate.Triggers>
@@ -49,53 +49,36 @@
                             </Setter.Value>
                         </Setter>
                     </Style>
-                    <Style x:Key="createProjectButton" TargetType="{x:Type ToggleButton}">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type ToggleButton}">
-                                    <Border HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="createProjectBorder" Background="#212121" Padding="10">
-                                        <ContentPresenter/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsChecked" Value="true">
-                                            <Setter Property="Background" TargetName="createProjectBorder" Value="#182a33"/>
-                                        </Trigger>
-                                        <MultiTrigger>
-                                            <MultiTrigger.Conditions>
-                                                <Condition Property="IsChecked" Value="False" />
-                                                <Condition Property="IsMouseOver" Value="True" />
-                                            </MultiTrigger.Conditions>
-                                            <MultiTrigger.Setters>
-                                                <Setter Property="Background" TargetName="createProjectBorder" Value="#4a4a4a"/>
-                                            </MultiTrigger.Setters>
-                                        </MultiTrigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                    <Style x:Key="closeButton" TargetType="{x:Type Button}">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type Button}">
-                                    <Border HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="createProjectBorder" Background="#171717" Padding="10">
-                                        <ContentPresenter/>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="true">
-                                            <Setter Property="Background" TargetName="createProjectBorder" Value="#4a4a4a"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </StackPanel.Resources>
-                <ToggleButton Content="Open Project" x:Name="openProjectButton" FontSize="32" Foreground="#d1d1d1" Padding="0" HorizontalAlignment="Left" Click="OnToggleButton_Click" IsChecked="True" Style="{StaticResource openProjectButton}"  FontFamily="{StaticResource SourceSansReg}" Margin="0, 15, 0, 0">
+					<Style x:Key="createProjectButton" TargetType="{x:Type ToggleButton}">
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate TargetType="{x:Type ToggleButton}">
+									<Border HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="createProjectBorder" Background="#212121" Padding="10" Width="400">
+										<ContentPresenter/>
+									</Border>
+									<ControlTemplate.Triggers>
+										<Trigger Property="IsChecked" Value="true">
+											<Setter Property="Background" TargetName="createProjectBorder" Value="#182a33"/>
+										</Trigger>
+										<MultiTrigger>
+											<MultiTrigger.Conditions>
+												<Condition Property="IsChecked" Value="False" />
+												<Condition Property="IsMouseOver" Value="True" />
+											</MultiTrigger.Conditions>
+											<MultiTrigger.Setters>
+												<Setter Property="Background" TargetName="createProjectBorder" Value="#4a4a4a"/>
+											</MultiTrigger.Setters>
+										</MultiTrigger>
+									</ControlTemplate.Triggers>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+					</Style>
+				</StackPanel.Resources>
+				<ToggleButton Content="Open Project" x:Name="openProjectButton" FontSize="32" Foreground="#d1d1d1" Padding="0" HorizontalAlignment="Left" Click="OnToggleButton_Click" IsChecked="True" Style="{StaticResource openProjectButton}"  FontFamily="{StaticResource SourceSansReg}" Margin="0, 15, 0, 0"  Width="400">
                 </ToggleButton>
-                <ToggleButton Content="Create Project" x:Name="createProjectButton" FontSize="32" Margin="350, 15, 0, 0" Foreground="#d1d1d1" Padding="10" HorizontalAlignment="Right" Click="OnToggleButton_Click" IsChecked="False" Style="{StaticResource createProjectButton}"  FontFamily="{StaticResource SourceSansReg}"/>
-                <Button Click="CloseWindow" Content="&#xE106;" FontFamily="Segoe MDL2 Assets" FontSize="15" Padding="15,15" Background="#171717" BorderBrush="Transparent" Foreground="#d1d1d1" WindowChrome.IsHitTestVisibleInChrome="True"  VerticalAlignment="Top" Margin="10,0,0,0" Style="{StaticResource closeButton}"/>
-            </StackPanel>
+				<ToggleButton HorizontalContentAlignment="Right" Content="Create Project" x:Name="createProjectButton" FontSize="32" Width="400" Margin="0,15,0,0" Foreground="#d1d1d1" Click="OnToggleButton_Click" IsChecked="False" Style="{StaticResource createProjectButton}"  FontFamily="{StaticResource SourceSansReg}" />
+			</StackPanel>
         </Border>
         <StackPanel Orientation="Horizontal" Grid.Row="2" x:Name="browserContent" Margin="0,0,0,0">
             <local:openProjectView />
