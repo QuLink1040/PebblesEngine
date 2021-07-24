@@ -56,11 +56,4 @@
     <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-SemiBoldItalic.ttf" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Resources\Project Templates\Empty Template\" />
-    <Folder Include="Resources\Project Templates\First Person Template\" />
-    <Folder Include="Resources\Project Templates\Top Down Template\" />
-    <Folder Include="Resources\Project Templates\Third Person Template\" />
-  </ItemGroup>
-
 </Project>
