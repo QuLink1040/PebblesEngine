@@ -5,7 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:PebblesEditor.GameProject"
     mc:Ignorable="d" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
-    Title="ProjectBrowser" Height="450" Width="800" WindowStyle="None">
+    Title="ProjectBrowser" Height="500" Width="800" WindowStyle="None">
 
     <Window.Resources>
         <FontFamily x:Key="SourceSansReg">/Resources/Fonts/SourceSansPro/#Source Sans Pro Regular</FontFamily>
