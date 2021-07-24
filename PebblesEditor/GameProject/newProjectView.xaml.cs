@@ -23,6 +23,7 @@ namespace PebblesEditor.GameProject
         public newProjectView()
         {
             InitializeComponent();
+            
         }
     }
 }

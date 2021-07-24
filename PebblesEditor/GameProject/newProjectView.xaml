@@ -4,16 +4,37 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PebblesEditor.GameProject"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=local:NewProject, IsDesignTimeCreatable=True}"
+             d:DesignHeight="450" d:DesignWidth="800" Width="800" Height="600">
+    <UserControl.Resources>
+        <FontFamily x:Key="SourceSansReg">/Resources/Fonts/SourceSansPro/#Source Sans Pro Regular</FontFamily>
+    </UserControl.Resources>
+
+    <UserControl.DataContext>
+        <local:NewProject />
+    </UserControl.DataContext>
+    
     <StackPanel Background="#182a33">
+
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <ListBox Width="195" Height="250"/>
+            <ListBox Width="195" Height="250" FontFamily="{StaticResource SourceSansReg}" Background="#0c191c" BorderBrush="#465250" BorderThickness="2"/>
             <Border Width="400" Height="250" Margin="5, 0, 0, 0"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 50, 0, 0">
-            <TextBlock Text="Name" Width="50" Foreground="#b8b8b8"/>
-            <TextBox Width="500"/>
+        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20, 0, 0">
+            <TextBlock Text="Name" Width="50" Foreground="#b8b8b8" FontFamily="{StaticResource SourceSansReg}"/>
+            <TextBox Width="550" Height="18" Text="{Binding Name}"/>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 5, 0, 0">
+            <TextBlock Text="Path" Width="50" Foreground="#b8b8b8" FontFamily="{StaticResource SourceSansReg}" Height="18"/>
+            <TextBox Width="500" Height="18" Text="{Binding Path}"/>
+            <Button Content="Browse" Width="45" Margin="5,0,0,0" Height="18"/>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
+            <Button Content="Create" Width="90" IsDefault="True" FontFamily="{StaticResource SourceSansReg}"/>
+            <Button Content="Exit" Width="90" Margin="30,0,0,0" IsCancel="True" FontFamily="{StaticResource SourceSansReg}"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

@@ -5,8 +5,23 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PebblesEditor.GameProject"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+             d:DesignHeight="450" d:DesignWidth="800" Width="800">
+    <UserControl.Resources>
+        <FontFamily x:Key="SourceSansReg">/Resources/Fonts/SourceSansPro/#Source Sans Pro Regular</FontFamily>
+    </UserControl.Resources>
+
+    <StackPanel Background="#172430">
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <ListBox Width="195" Height="250" FontFamily="{StaticResource SourceSansReg}" Background="#0c161c" BorderBrush="#3d4f59" BorderThickness="2"/>
+            <Border Width="400" Height="250" Margin="5, 0, 0, 0"/>
+        </StackPanel>
+
+        
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,75,0,0">
+            <Button Content="Open" Width="90" IsDefault="True"/>
+            <Button Content="Exit" Width="90" Margin="30,0,0,0" IsCancel="True"/>
+        </StackPanel>
+    </StackPanel>
 </UserControl>

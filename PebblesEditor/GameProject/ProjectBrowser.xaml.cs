@@ -17,12 +17,13 @@ namespace PebblesEditor.GameProject
     /// <summary>
     /// Interaction logic for ProjectBrowser.xaml
     /// </summary>
+    /// 
+
     public partial class ProjectBrowser : Window
     {
-        
-
         public ProjectBrowser()
         {
+            
             InitializeComponent();
         }
 
@@ -46,6 +47,11 @@ namespace PebblesEditor.GameProject
                 }
                 createProjectButton.IsChecked = true;
             }
+        }
+
+        private void CloseWindow(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -5,13 +5,23 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\bin\x64\Debug\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <OutputPath>..\x64\Debug\</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\x64\Debug\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <OutputPath>..\x64\Debug\</OutputPath>
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
@@ -44,6 +54,13 @@
     <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-Regular.ttf" />
     <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-SemiBold.ttf" />
     <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-SemiBoldItalic.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\Project Templates\Empty Template\" />
+    <Folder Include="Resources\Project Templates\First Person Template\" />
+    <Folder Include="Resources\Project Templates\Top Down Template\" />
+    <Folder Include="Resources\Project Templates\Third Person Template\" />
   </ItemGroup>
 
 </Project>
