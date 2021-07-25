@@ -39,6 +39,7 @@
     <None Remove="Resources\Fonts\SourceSansPro\SourceSansPro-Regular.ttf" />
     <None Remove="Resources\Fonts\SourceSansPro\SourceSansPro-SemiBold.ttf" />
     <None Remove="Resources\Fonts\SourceSansPro\SourceSansPro-SemiBoldItalic.ttf" />
+    <None Remove="Resources\Images\Pebbles_Icon.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -54,6 +55,9 @@
     <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-Regular.ttf" />
     <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-SemiBold.ttf" />
     <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-SemiBoldItalic.ttf" />
+    <Resource Include="Resources\Images\Pebbles_Icon.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

@@ -4,9 +4,83 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PebblesEditor"
+		xmlns:editors="clr-namespace:PebblesEditor.Editors"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="PebblesEditor" Height="450" Width="800">
-    <Grid>
+        Title="PebblesEditor" WindowStyle="None" d:Height="1080" d:Width="1920" ResizeMode="CanResizeWithGrip">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="32" ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}" />
+    </WindowChrome.WindowChrome>
+    <Window.Resources>
+        <Style x:Key="openProjectButton" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="openProjectBorder" Background="#171717" Padding="10"  Width="400">
+                            <ContentPresenter HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
 
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsChecked" Value="False" />
+                                    <Condition Property="IsMouseOver" Value="True" />
+                                </MultiTrigger.Conditions>
+                                <MultiTrigger.Setters>
+                                    <Setter Property="Background" TargetName="openProjectBorder" Value="#4a4a4a"/>
+                                </MultiTrigger.Setters>
+                            </MultiTrigger>
+
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter Property="Background" TargetName="openProjectBorder" Value="#172430"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid MouseRightButtonDown="Window_RightMouseDown" MouseLeftButtonDown="Window_LeftMouseDown">
+        <Grid VerticalAlignment="Top" WindowChrome.IsHitTestVisibleInChrome="True" HorizontalAlignment="Right" Width="1920" Background="#1A1A41">
+            <Image Height="20" Width="15" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Source="Resources/Images/Pebbles_Icon.png">
+            </Image>
+            <Button Click="Minimize_Click" Content="&#xE949;" FontFamily="Segoe MDL2 Assets" FontSize="10" Padding="15,15,15,5" BorderBrush="Transparent" HorizontalAlignment="Right" Background="#1A1A41" BorderThickness="0" Foreground="#D1D1D1" Margin="0,0,80,0">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#26266f"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Click="Maximize_Click" FontFamily="Segoe MDL2 Assets" FontSize="10" Padding="15,10" BorderBrush="Transparent" Background="#1A1A41" BorderThickness="0" Foreground="#D1D1D1" HorizontalAlignment="Right" Margin="0,0,40,0">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Button.Content" Value="&#xE739;" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, Path=WindowState}" Value="Maximized">
+                                <Setter Property="Button.Content" Value="&#xE923;" />
+                            </DataTrigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#26266f"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Click="Close_Click" Content="&#xE106;" FontFamily="Segoe MDL2 Assets" FontSize="10" Padding="15,10" BorderBrush="Transparent" HorizontalAlignment="Right" Background="#1A1A41" BorderThickness="0" Foreground="#D1D1D1">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#26266f"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+        <editors:WorldEditorView Margin="0,30,0,0"/>
     </Grid>
 </Window>
