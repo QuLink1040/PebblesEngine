@@ -147,7 +147,7 @@ namespace PebblesEditor.GameProject
 
                 var projectXML = File.ReadAllText(template.ProjectFilePath);
                 projectXML = string.Format(projectXML, ProjectName, ProjectPath);
-                var projectPath = Path.GetFullPath(Path.Combine(path, $"{ProjectName}{Project.Extension}"));
+                var projectPath = Path.GetFullPath(Path.Combine(path, $@"{ProjectName}{Project.Extension}"));
                 File.WriteAllText(projectPath, projectXML);
 
                 return path;

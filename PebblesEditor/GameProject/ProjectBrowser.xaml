@@ -26,8 +26,8 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-									<Border HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="openProjectBorder" Background="#212121" Padding="10"  Width="400">
-                                        <ContentPresenter/>
+									<Border HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="openProjectBorder" Background="#171717" Padding="10"  Width="400">
+                                        <ContentPresenter HorizontalAlignment="Center"/>
                                     </Border>
                                     <ControlTemplate.Triggers>
 
@@ -53,8 +53,8 @@
 						<Setter Property="Template">
 							<Setter.Value>
 								<ControlTemplate TargetType="{x:Type ToggleButton}">
-									<Border HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="createProjectBorder" Background="#212121" Padding="10" Width="400">
-										<ContentPresenter/>
+									<Border HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="createProjectBorder" Background="#171717" Padding="10" Width="400">
+										<ContentPresenter HorizontalAlignment="Center"/>
 									</Border>
 									<ControlTemplate.Triggers>
 										<Trigger Property="IsChecked" Value="true">

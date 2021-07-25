@@ -15,7 +15,7 @@ namespace PebblesEditor.GameProject
     {
         public static string Extension { get; } = ".pebbles";
         [DataMember]
-        public string Name { get; private set; }
+        public string Name { get; private set; } = "New Project";
         [DataMember]
         public string Path { get; private set; }
 
@@ -24,14 +24,55 @@ namespace PebblesEditor.GameProject
         [DataMember(Name = "Scenes")]
         private ObservableCollection<Scene> _scenes = new ObservableCollection<Scene>();
         public ReadOnlyObservableCollection<Scene> Scenes
-        { get; }
+        { get; private set; }
+
+        private Scene _acticeScene;
+        public Scene ActiveScene
+        {
+            get => _acticeScene;
+            set
+            {
+                if (_acticeScene != value)
+                {
+                    _acticeScene = value;
+                    OnPropertyChange(nameof(ActiveScene));
+                }
+            }
+        }
+
+        public static Project Current => App.Current.MainWindow.DataContext as Project;
+
+        public static Project Load(string file)
+        {
+            Debug.Assert(File.Exists(file));
+            return Serializer.FromFile<Project>(file);
+        }
+
+        public static void Save(Project project)
+        {
+            Serializer.ToFile(project, project.FullPath);
+        }
+
+        public void Unload()
+        { }
+
+        [OnDeserialized]
+        private void OnDeserialized(StreamingContext context)
+        {
+            if (_scenes != null)
+            {
+                Scenes = new ReadOnlyObservableCollection<Scene>(_scenes);
+                OnPropertyChange(nameof(Scenes));
+            }
+            ActiveScene = Scenes.FirstOrDefault(x => x.IsActive);
+        }
 
         public Project(string name, string path)
         {
             Name = name;
             Path = path;
 
-            _scenes.Add(new Scene(this, "Default Scene"));
+            OnDeserialized(new StreamingContext());
         }
     }
 }

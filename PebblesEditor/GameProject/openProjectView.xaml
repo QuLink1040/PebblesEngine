@@ -9,19 +9,91 @@
     <UserControl.Resources>
         <FontFamily x:Key="SourceSansReg">/Resources/Fonts/SourceSansPro/#Source Sans Pro Regular</FontFamily>
     </UserControl.Resources>
+	<UserControl.DataContext>
+		<local:OpenProject/>
+	</UserControl.DataContext>
 
 	<StackPanel Background="#172430">
 
 		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
-            <ListBox Width="195" Height="250" FontFamily="{StaticResource SourceSansReg}" Background="#0c161c" BorderBrush="#3d4f59" BorderThickness="2"/>
-            <Border Width="400" Height="250" Margin="5, 0, 0, 0"/>
-        </StackPanel>
+			<ListBox Width="195" Height="250" Background="#0c161c" BorderBrush="#3d4f59" BorderThickness="2" ItemsSource="{Binding Projects}" x:Name="projectsListBox" SelectedIndex="0">
+				<ListBox.ItemContainerStyle>
+					<Style TargetType="ListBoxItem">
+						<EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_Mouse_DoubleClick"></EventSetter>
+					</Style>
+				</ListBox.ItemContainerStyle>
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="{Binding ProjectName}" FontFamily="{StaticResource SourceSansReg}" FontSize="20" TextWrapping="Wrap" Foreground="#b8b8b8"/>
+						</StackPanel>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+			<Border Width="400" Height="250" Margin="5, 0, 0, 0">
+				<Border.Background>
+					<ImageBrush ImageSource="{Binding Path=SelectedItem.Screenshot, ElementName=projectsListBox}"/>
+				</Border.Background>
+			</Border>
+		</StackPanel>
 
         
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,75,0,0">
-			<Button Content="Open" Width="90" IsDefault="True" Height="20"/>
-			<Button Content="Exit" Width="90" Margin="30,0,0,0" IsCancel="True" Height="20"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,95,0,0">
+			<StackPanel.Resources>
+				<Style x:Key="openButton" TargetType="{x:Type Button}">
+					<Setter Property="Template">
+						<Setter.Value>
+							<ControlTemplate TargetType="{x:Type Button}">
+								<Border HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="buttonBorder" Width="90" Height="30" Background="#305D50">
+									<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+								</Border>
+								<ControlTemplate.Triggers>
+									<MultiTrigger>
+										<MultiTrigger.Conditions>
+											<Condition Property="IsEnabled" Value="True" />
+											<Condition Property="IsMouseOver" Value="False" />
+										</MultiTrigger.Conditions>
+										<MultiTrigger.Setters>
+											<Setter Property="Background" TargetName="buttonBorder" Value="#305D50"/>
+										</MultiTrigger.Setters>
+									</MultiTrigger>
+									<MultiTrigger>
+										<MultiTrigger.Conditions>
+											<Condition Property="IsEnabled" Value="True" />
+											<Condition Property="IsMouseOver" Value="True" />
+										</MultiTrigger.Conditions>
+										<MultiTrigger.Setters>
+											<Setter Property="Background" TargetName="buttonBorder" Value="#3B7363"/>
+										</MultiTrigger.Setters>
+									</MultiTrigger>
+								</ControlTemplate.Triggers>
+							</ControlTemplate>
+						</Setter.Value>
+					</Setter>
+				</Style>
+				<Style x:Key="exitButton" TargetType="{x:Type Button}">
+					<Setter Property="Template">
+						<Setter.Value>
+							<ControlTemplate TargetType="{x:Type Button}">
+								<Border HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="buttonBorder" Width="90" Height="30" Background="#305D50">
+									<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+								</Border>
+								<ControlTemplate.Triggers>
+									<Trigger Property="IsMouseOver" Value="True">
+										<Setter Property="Background" TargetName="buttonBorder" Value="#305D50"/>
+									</Trigger>
+									<Trigger Property="IsMouseOver" Value="False">
+										<Setter Property="Background" TargetName="buttonBorder" Value="#3B7363"/>
+									</Trigger>
+								</ControlTemplate.Triggers>
+							</ControlTemplate>
+						</Setter.Value>
+					</Setter>
+				</Style>
+			</StackPanel.Resources>
+			<Button Content="Open" Width="90" IsDefault="True" Height="30" FontSize="20" Style="{StaticResource openButton}" Foreground="#D1D1D1" Click="Open_Click"/>
+			<Button Content="Exit" Width="90" Margin="30,0,0,0" IsCancel="True" Height="30" FontSize="20" Style="{StaticResource openButton}" Foreground="#D1D1D1"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PebblesEditor.GameProject;
 
 namespace PebblesEditor
 {
@@ -24,6 +26,7 @@ namespace PebblesEditor
         {
             InitializeComponent();
             Loaded += OnMainWindowLoaded;
+            Closing += OnMainWindowClosing;
         }
 
         private void OnMainWindowLoaded(object sender, RoutedEventArgs e)
@@ -32,16 +35,23 @@ namespace PebblesEditor
             OpenProjectBrowser();
         }
 
+        private void OnMainWindowClosing(object sender, CancelEventArgs e)
+        {
+            Closing -= OnMainWindowClosing;
+            Project.Current?.Unload();
+        }
+
         private void OpenProjectBrowser()
         {
             var projectBrowser = new GameProject.ProjectBrowser();
-            if (projectBrowser.ShowDialog() == false)
+            if (projectBrowser.ShowDialog() == false || projectBrowser.DataContext == null)
             {
                 Application.Current.Shutdown();
             }
             else
             {
-
+                Project.Current?.Unload();
+                DataContext = projectBrowser.DataContext;
             }
         }
     }

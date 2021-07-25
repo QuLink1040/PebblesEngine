@@ -24,5 +24,29 @@ namespace PebblesEditor.GameProject
         {
             InitializeComponent();
         }
+
+        private void Open_Click(object sender, RoutedEventArgs e)
+        {
+            OpenSelected();
+        }
+
+        private void ListBoxItem_Mouse_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            OpenSelected();
+        }
+
+        private void OpenSelected()
+        {
+            var project = OpenProject.Open(projectsListBox.SelectedItem as ProjectData);
+            bool dialogResult = false;
+            var win = Window.GetWindow(this);
+            if (project != null)
+            {
+                dialogResult = true;
+                win.DataContext = project;
+            }
+            win.DialogResult = dialogResult;
+            win.Close();
+        }
     }
 }
