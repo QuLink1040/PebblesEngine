@@ -23,6 +23,12 @@ namespace PebblesEditor.GameProject
         public openProjectView()
         {
             InitializeComponent();
+
+            Loaded += (s, e) =>
+            {
+                var item = projectsListBox.ItemContainerGenerator.ContainerFromIndex(projectsListBox.SelectedIndex) as ListBoxItem;
+                item?.Focus();
+            };
         }
 
         private void Open_Click(object sender, RoutedEventArgs e)

@@ -10,39 +10,36 @@
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="32" ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}" />
     </WindowChrome.WindowChrome>
+
     <Window.Resources>
-        <Style x:Key="openProjectButton" TargetType="{x:Type ToggleButton}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ToggleButton}">
-                        <Border HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="openProjectBorder" Background="#171717" Padding="10"  Width="400">
-                            <ContentPresenter HorizontalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="IsChecked" Value="False" />
-                                    <Condition Property="IsMouseOver" Value="True" />
-                                </MultiTrigger.Conditions>
-                                <MultiTrigger.Setters>
-                                    <Setter Property="Background" TargetName="openProjectBorder" Value="#4a4a4a"/>
-                                </MultiTrigger.Setters>
-                            </MultiTrigger>
-
-                            <Trigger Property="IsChecked" Value="true">
-                                <Setter Property="Background" TargetName="openProjectBorder" Value="#172430"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        <ResourceDictionary Source="/PebblesEditor;component/Resources/Styles.xaml"/>
     </Window.Resources>
-    <Grid MouseRightButtonDown="Window_MouseDown" MouseLeftButtonDown="Window_LeftMouseDown">
-        <Grid VerticalAlignment="Top" WindowChrome.IsHitTestVisibleInChrome="True" HorizontalAlignment="Stretch" Background="#1A1A41" Height="32">
-            <Image Width="20" Height="25" Source="/Resources/Images/Pebbles_Icon.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" MouseDown="Window_MouseDown"/>
-            <Button Click="Minimize_Click" Content="&#xE949;" FontFamily="Segoe MDL2 Assets" FontSize="10" Padding="15,15,15,5" BorderBrush="Transparent" HorizontalAlignment="Right" Background="#1A1A41" BorderThickness="0" Foreground="#D1D1D1" Margin="0,0,80,0">
+
+    <Grid>
+        <DockPanel VerticalAlignment="Top" WindowChrome.IsHitTestVisibleInChrome="True" HorizontalAlignment="Stretch" Background="#1A1A41" Height="40" MouseLeftButtonDown="Window_LeftMouseDown" MouseRightButtonDown="Window_MouseDown">
+            <Image Width="20" Height="25" Source="/Resources/Images/Pebbles_Icon.png" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" MouseDown="Window_MouseDown" DockPanel.Dock="Left"/>
+            <Menu DockPanel.Dock="Left" VerticalAlignment="Center" Background="#1A1A41" BorderThickness="0">
+                <MenuItem Style="{DynamicResource MenuItemStyle}" Header="File">
+                    <MenuItem Style="{DynamicResource MenuItemStyle}" Header="_New">
+                        <MenuItem Style="{DynamicResource MenuItemStyle}" Header="Project"/>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Style="{DynamicResource MenuItemStyle}" Header="_Edit">
+                    <MenuItem Style="{DynamicResource MenuItemStyle}" Header="_Go to">
+                    </MenuItem>
+                    <MenuItem Style="{DynamicResource MenuItemStyle}" Header="_Find and Replace">
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Style="{DynamicResource MenuItemStyle}" Header="_View">
+                    <MenuItem Style="{DynamicResource MenuItemStyle}" Header="_Something">
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Style="{DynamicResource MenuItemStyle}" Header="_Help">
+                    <MenuItem Style="{DynamicResource MenuItemStyle}" Header="_Something">
+                    </MenuItem>
+                </MenuItem>
+            </Menu>
+            <Button Click="Close_Click" Content="&#xE106;" FontFamily="Segoe MDL2 Assets" FontSize="10" Padding="20,15" BorderBrush="Transparent" HorizontalAlignment="Right" Background="#1A1A41" BorderThickness="0" Foreground="#D1D1D1" DockPanel.Dock="Right">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Style.Triggers>
@@ -53,7 +50,7 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Click="Maximize_Click" FontFamily="Segoe MDL2 Assets" FontSize="10" Padding="15,10" BorderBrush="Transparent" Background="#1A1A41" BorderThickness="0" Foreground="#D1D1D1" HorizontalAlignment="Right" Margin="0,0,40,0">
+            <Button Click="Maximize_Click" FontFamily="Segoe MDL2 Assets" FontSize="10" Padding="20,15" BorderBrush="Transparent" Background="#1A1A41" BorderThickness="0" Foreground="#D1D1D1" HorizontalAlignment="Right" Margin="0,0,0,0" DockPanel.Dock="Right">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Button.Content" Value="&#xE739;" />
@@ -68,7 +65,7 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Click="Close_Click" Content="&#xE106;" FontFamily="Segoe MDL2 Assets" FontSize="10" Padding="15,10" BorderBrush="Transparent" HorizontalAlignment="Right" Background="#1A1A41" BorderThickness="0" Foreground="#D1D1D1">
+            <Button Click="Minimize_Click" Content="&#xE949;" FontFamily="Segoe MDL2 Assets" FontSize="10" Padding="20,15" BorderBrush="Transparent" HorizontalAlignment="Right" Background="#1A1A41" BorderThickness="0" Foreground="#D1D1D1" Margin="0,0,0,0" DockPanel.Dock="Right">
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
                         <Style.Triggers>
@@ -79,7 +76,7 @@
                     </Style>
                 </Button.Style>
             </Button>
-        </Grid>
-        <editors:WorldEditorView Margin="0,32,0,1" Grid.RowSpan="2"/>
+        </DockPanel>
+        <editors:WorldEditorView Margin="0,40,0,0" Grid.RowSpan="2"/>
     </Grid>
 </Window>

@@ -71,30 +71,30 @@ namespace PebblesEditor
 
         private void Maximize_Click(object sender, RoutedEventArgs e)
         {
-            if (this.WindowState == WindowState.Maximized)
+            if (App.Current.MainWindow.WindowState == WindowState.Maximized)
             {
-                this.WindowState = WindowState.Normal;
+                App.Current.MainWindow.WindowState = WindowState.Normal;
             }
             else
             {
-                this.WindowState = WindowState.Maximized;
+                App.Current.MainWindow.WindowState = WindowState.Maximized;
             }
         }
 
         private void Minimize_Click(object sender, RoutedEventArgs e)
         {
-            this.WindowState = WindowState.Minimized;
+            App.Current.MainWindow.WindowState = WindowState.Minimized;
         }
 
         private void MainWindowStateChangeRaised(object sender, EventArgs e)
         {
-            if (WindowState == WindowState.Maximized)
+            if (App.Current.MainWindow.WindowState == WindowState.Maximized)
             {
-                this.BorderThickness = new Thickness(6);
+                App.Current.MainWindow.BorderThickness = new Thickness(6);
             }
             else
             {
-                this.BorderThickness = new Thickness(0);
+                App.Current.MainWindow.BorderThickness = new Thickness(0);
             }
         }
 
@@ -102,7 +102,7 @@ namespace PebblesEditor
         {
             if (e.ChangedButton == MouseButton.Right || e.ChangedButton == MouseButton.Left)
             {
-                IntPtr hWnd = new System.Windows.Interop.WindowInteropHelper(this).Handle;
+                IntPtr hWnd = new System.Windows.Interop.WindowInteropHelper(App.Current.MainWindow).Handle;
                 RECT pos;
                 GetWindowRect(hWnd, out pos);
                 IntPtr hMenu = GetSystemMenu(hWnd, false);
@@ -121,11 +121,10 @@ namespace PebblesEditor
         static extern bool GetWindowRect(IntPtr hWnd, out RECT rect);
         struct RECT { public int left, top, right, bottom; }
 
-        private bool _leftMouseDown = false;
         private void Window_LeftMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ButtonState == MouseButtonState.Pressed && this.WindowState == WindowState.Normal)
-                this.DragMove();
+            if (e.ButtonState == MouseButtonState.Pressed && App.Current.MainWindow.WindowState == WindowState.Normal)
+                App.Current.MainWindow.DragMove();
         }
     }
 }

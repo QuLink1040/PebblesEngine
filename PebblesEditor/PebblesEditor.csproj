@@ -30,7 +30,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Pebbles_Icon.png" />
+    <Page Remove="Properties\DesignTimeResources.xaml" />
     <None Remove="Resources\Fonts\Montserrat\Montserrat-Black.ttf" />
     <None Remove="Resources\Fonts\Montserrat\Montserrat-BlackItalic.ttf" />
     <None Remove="Resources\Fonts\Montserrat\Montserrat-Bold.ttf" />
@@ -65,7 +65,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Pebbles_Icon.png" />
     <Resource Include="Resources\Fonts\Montserrat\Montserrat-Black.ttf" />
     <Resource Include="Resources\Fonts\Montserrat\Montserrat-BlackItalic.ttf" />
     <Resource Include="Resources\Fonts\Montserrat\Montserrat-Bold.ttf" />
@@ -127,5 +126,14 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="Properties\DesignTimeResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+    </Page>
+  </ItemGroup>
+
 
 </Project>
