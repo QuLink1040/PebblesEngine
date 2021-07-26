@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -28,6 +29,8 @@ namespace PebblesEditor
             InitializeComponent();
             this.Height = SystemParameters.WorkArea.Height;
             this.Width = SystemParameters.WorkArea.Width;
+            Debug.WriteLine(SystemParameters.WorkArea.Height);
+            Debug.WriteLine(SystemParameters.MaximizedPrimaryScreenWidth);
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
             StateChanged += MainWindowStateChangeRaised;
             Loaded += OnMainWindowLoaded;
@@ -95,9 +98,9 @@ namespace PebblesEditor
             }
         }
 
-        private void Window_RightMouseDown(object sender, MouseButtonEventArgs e)
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Right)
+            if (e.ChangedButton == MouseButton.Right || e.ChangedButton == MouseButton.Left)
             {
                 IntPtr hWnd = new System.Windows.Interop.WindowInteropHelper(this).Handle;
                 RECT pos;
@@ -118,9 +121,11 @@ namespace PebblesEditor
         static extern bool GetWindowRect(IntPtr hWnd, out RECT rect);
         struct RECT { public int left, top, right, bottom; }
 
+        private bool _leftMouseDown = false;
         private void Window_LeftMouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.DragMove();
-        }   
+            if (e.ButtonState == MouseButtonState.Pressed && this.WindowState == WindowState.Normal)
+                this.DragMove();
+        }
     }
 }

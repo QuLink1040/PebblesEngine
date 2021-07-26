@@ -6,10 +6,13 @@
     <UseWPF>true</UseWPF>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <Platforms>AnyCPU;x86</Platforms>
+    <ApplicationIcon>Resources\Images\Pebbles_Icon.ico</ApplicationIcon>
+    <Win32Resource />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>..\bin\x64\Debug\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
@@ -27,6 +30,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Pebbles_Icon.png" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-Black.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-BlackItalic.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-Bold.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-BoldItalic.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-ExtraBold.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-ExtraBoldItalic.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-ExtraLight.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-ExtraLightItalic.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-Italic.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-Light.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-LightItalic.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-Medium.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-MediumItalic.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-Regular.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-SemiBold.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-SemiBoldItalic.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-Thin.ttf" />
+    <None Remove="Resources\Fonts\Montserrat\Montserrat-ThinItalic.ttf" />
     <None Remove="Resources\Fonts\SourceSansPro\SourceSansPro-Black.ttf" />
     <None Remove="Resources\Fonts\SourceSansPro\SourceSansPro-BlackItalic.ttf" />
     <None Remove="Resources\Fonts\SourceSansPro\SourceSansPro-Bold.ttf" />
@@ -43,6 +65,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Pebbles_Icon.png" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-Black.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-BlackItalic.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-Bold.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-BoldItalic.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-ExtraBold.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-ExtraBoldItalic.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-ExtraLight.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-ExtraLightItalic.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-Italic.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-Light.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-LightItalic.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-Medium.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-MediumItalic.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-Regular.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-SemiBold.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-SemiBoldItalic.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-Thin.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat\Montserrat-ThinItalic.ttf" />
     <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-Black.ttf" />
     <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-BlackItalic.ttf" />
     <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-Bold.ttf" />
@@ -56,16 +97,28 @@
     <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-SemiBold.ttf" />
     <Resource Include="Resources\Fonts\SourceSansPro\SourceSansPro-SemiBoldItalic.ttf" />
     <Resource Include="Resources\Images\Pebbles_Icon.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

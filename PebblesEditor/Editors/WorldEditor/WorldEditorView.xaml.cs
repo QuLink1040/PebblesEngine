@@ -23,8 +23,8 @@ namespace PebblesEditor.Editors
         public WorldEditorView()
         {
             InitializeComponent();
-            this.Height = (System.Windows.SystemParameters.PrimaryScreenHeight - 32);
-            this.Width = (System.Windows.SystemParameters.PrimaryScreenWidth);
+            this.Height = SystemParameters.WorkArea.Height - 32;
+            this.Width = SystemParameters.WorkArea.Width;
         }
     }
 }

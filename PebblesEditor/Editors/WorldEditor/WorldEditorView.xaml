@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PebblesEditor.Editors"
              mc:Ignorable="d" 
-			  d:Height="1048" d:Width="1920">
+			  d:Height="688" d:Width="1280">
     <Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition/>
@@ -16,7 +16,7 @@
 				<RowDefinition/>
 				<RowDefinition/>
 			</Grid.RowDefinitions>
-			<GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" Margin="5,0,0,0" ResizeDirection="Rows"/>
+			<GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" Margin="5,0,0,0" VerticalAlignment="Top"/>
 		</Grid>
 		<GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="5,0,0,0"/>
 		<Grid Grid.Column="1">
@@ -24,7 +24,7 @@
 				<RowDefinition/>
 				<RowDefinition/>
 			</Grid.RowDefinitions>
-            <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" Margin="5,0,0,0" ResizeDirection="Rows"/>
+            <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" Margin="5,0,0,0" VerticalAlignment="Top"/>
         </Grid>
 	</Grid>
 </UserControl>
