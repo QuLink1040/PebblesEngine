@@ -7,7 +7,7 @@
              xmlns:proj="clr-namespace:PebblesEditor.GameProject"
              d:DataContext="{d:DesignInstance Type=proj:Project, IsDesignTimeCreatable=True}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="400" d:DesignWidth="250">
     <UserControl.Resources>
         <ResourceDictionary Source="/PebblesEditor;component/Properties/DesignTimeResources.xaml"/>
     </UserControl.Resources>
@@ -17,8 +17,8 @@
             <RowDefinition Height="32"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Content="Add Scene" Width="96" VerticalAlignment="Center" Focusable="False" Grid.Row="0" HorizontalAlignment="Left" Margin="20,0,0,0" Style="{StaticResource customButton}" Click="AddScene_Click"/>
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Button Content="Add Scene" Width="96" VerticalAlignment="Center" Focusable="False" Grid.Row="0" HorizontalAlignment="Left" Margin="20,0,0,0" Style="{StaticResource customButton}" Command="{Binding AddScene}"/>
+        <ListBox Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Background="#1A1A41" BorderThickness="0" Style="{DynamicResource customListBox}" ItemContainerStyle="{DynamicResource customListBoxItem}">
             <ItemsControl ItemsSource="{Binding Scenes}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -30,15 +30,23 @@
                         <Expander IsExpanded="{Binding IsActive, Mode=OneWay}" Style="{DynamicResource customExpander}">
                             <Expander.Header>
                                 <Grid>
-                                    <TextBlock Text="{Binding Name}" Foreground="#D1D1D1"/>
+                                    <TextBlock Text="{Binding Name}" Foreground="#D1D1D1" Height="15" Tag="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}" Name="sceneName">
+                                        <TextBlock.ContextMenu>
+                                            <ContextMenu DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource self}}" Background="#010128">
+                                                <MenuItem Header="_Remove" Style="{DynamicResource MenuItemStyle}" 
+                                                    CommandParameter="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContextMenu}}" 
+                                                    Command="{Binding Path=PlacementTarget.Tag.DataContext.RemoveScene, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContextMenu}}" IsEnabled="{Binding Path=PlacementTarget.DataTarget.IsActive, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContextMenu}}"/>
+                                            </ContextMenu>
+                                        </TextBlock.ContextMenu>
+                                    </TextBlock>
                                 </Grid>
                             </Expander.Header>
-                            <Border Background="#1A1A41" Height="100"/>
+                            <Border Background="#1A1A41" Height="100" Margin="-6,-4,-6,-6"/>
                         </Expander>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-        </ScrollViewer>
+        </ListBox>
     </Grid>
 </UserControl>
 

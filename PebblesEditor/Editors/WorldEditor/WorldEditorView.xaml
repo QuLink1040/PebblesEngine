@@ -9,8 +9,8 @@
     <Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition/>
-			<ColumnDefinition/>
-		</Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
 		<Grid Grid.Column="0">
 			<Grid.RowDefinitions>
 				<RowDefinition/>
@@ -21,11 +21,11 @@
 		<GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="-5,0,0,0"/>
 		<Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
-            <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top"/>
             <local:ProjectLayoutView/>
+            <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top"/>
         </Grid>
 	</Grid>
 </UserControl>
